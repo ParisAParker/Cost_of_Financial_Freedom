@@ -1,0 +1,68 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+library(tidyverse)
+library(lubridate)
+library(dplyr)
+```
+```{r}
+cpi_by_region <- read_csv("data/cpi_by_region.csv")
+family_income <- read_csv("data/income_updated.csv")
+```
+
+```{r}
+cpi_by_region
+```
+
+
+
+
+
+
+```{r}
+cpi_by_region <- cpi_by_region |>
+  mutate(date = mdy(paste(Month, "01", Period)))
+```
+
+
+```{r}
+min_year = 1990
+max_year = 2000
+
+cpi_by_region |>
+  filter(Period >= min_year, Period <= max_year)
+```
+
+```{r}
+min_year = 1980
+max_year = 2005
+
+cpi_by_region |>
+  filter(Period >= min_year, Period <= max_year) |>
+  ggplot(aes(x = date, y = CPI, group = Region, color = Region,linetype = Region)) +
+  geom_line() +
+  scale_color_manual(values = c('Red','Dark Green', 'Purple', 'Black', 'Blue')) +
+  scale_linetype_manual(values = c("solid","solid", "solid", "dashed","solid"))
+```
+```{r}
+family_income
+```
+
+```{r}
+min_year = 1960
+max_year = 2000
+family_income |>
+  filter(year >= min_year, year <= max_year) |>
+  ggplot(aes(x = year, y= median_income))+
+      geom_line()
+       
+```
+
+```{r}
+cpi_by_region |>
+  group_by(Region)
+```
+
+
