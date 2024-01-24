@@ -8,8 +8,11 @@ library(lubridate)
 library(dplyr)
 ```
 ```{r}
-cpi_by_region <- read_csv("data/cpi_by_region.csv")
-family_income <- read_csv("data/income_updated.csv")
+cpi_by_region <- read_csv("../data/cpi_by_region.csv")
+family_income <- read_csv("../data/income_updated.csv")
+accurate_income <- read_csv("../data/accurate_income.csv")
+cpi_total <- read_csv("../data/all_cpi_updated.csv")
+cpi_income <- read_csv("../data/cpi_income.csv")
 ```
 
 ```{r}
@@ -53,7 +56,7 @@ family_income
 ```{r}
 min_year = 1960
 max_year = 2000
-family_income |>
+accurate_income |>
   filter(year >= min_year, year <= max_year) |>
   ggplot(aes(x = year, y= median_income))+
       geom_line()
