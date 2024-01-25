@@ -67,5 +67,30 @@ accurate_income |>
 cpi_by_region |>
   group_by(Region)
 ```
+```{r}
+cpi_total |>
+  ggplot(aes(x = year, y = CPI)) +
+  geom_line()
+```
+```{r}
+cpi_income |>
+  ggplot(aes(x= year, y = yearly_change_c)) +
+  geom_line()
+```
+```{r}
+cpi_income |>
+  ggplot(aes(x= year, y = yearly_change_i)) +
+  geom_line()
+```
 
+```{r}
+cpi_income |>
+  ggplot(aes(x= year, y = cum_income_change)) +
+  geom_line()
+```
+```{r}
+cpi_income |>
+  ggplot(aes(x= year, y = cum_cpi_change)) +
+  geom_line()
+```
 
