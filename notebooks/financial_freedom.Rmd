@@ -57,9 +57,9 @@ family_income
 min_year = 1960
 max_year = 2000
 accurate_income |>
-  filter(year >= min_year, year <= max_year) |>
-  ggplot(aes(x = year, y= median_income))+
-      geom_line()
+  filter(year >= min_year, year <= max_year) #|>
+  #ggplot(aes(x = year, y= median_income))+
+   #   geom_line()
        
 ```
 
@@ -91,6 +91,20 @@ cpi_income |>
 ```{r}
 cpi_income |>
   ggplot(aes(x= year, y = cum_cpi_change)) +
+  geom_line()
+```
+```{r}
+min_year = 2000
+max_year = 2020
+
+adjustable_cpi_income <- cpi_income |>
+  filter(year >= min_year, year <= max_year)
+
+adjustable_cpi_income <- adjustable_cpi_income |>
+  mutate(cum_yearly_change_c = cumsum(yearly_change_c))
+
+adjustable_cpi_income |>
+  ggplot(aes(x = year, y = cum_yearly_change_c)) +
   geom_line()
 ```
 
