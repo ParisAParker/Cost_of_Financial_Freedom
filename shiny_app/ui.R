@@ -17,7 +17,6 @@ dashboardPage(
     dashboardBody(
       fluidRow(
         box(plotOutput("distPlot", height = 500, width = 500)),
-        
         box(
         title = "Controls",
         sliderInput("years",
@@ -25,4 +24,15 @@ dashboardPage(
                         min = 1974,
                         max = 2023,
                         value = c(1990,1995)))),
-    ))
+      fluidRow(
+        box(plotOutput("income", height = 500, width = 500)),
+        box(
+          title = "Controls",
+          sliderInput("year",
+                      "Year Range:",
+                      min = 1947,
+                      max = 2022,
+                      value = c(1980,2000)))),
+      
+          
+        ))

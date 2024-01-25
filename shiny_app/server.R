@@ -23,5 +23,16 @@ server <- function(input, output, session) {
         scale_color_manual(values = c('Red','Dark Green', 'Purple', 'Black', 'Blue')) +
         scale_linetype_manual(values = c("solid","solid", "solid", "dashed","solid"))
     })
+    output$income <- renderPlot({
+      min_year = input$year[1]
+      max_year = input$year[2]
+      
+      accurate_income |>
+        filter(year >= min_year, year <= max_year) |>
+        ggplot(aes(x = year, y= median_income))+
+        geom_line()
+      
+    })
+    
 
 }
