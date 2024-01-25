@@ -34,5 +34,20 @@ server <- function(input, output, session) {
       
     })
     
+    output$adjustableincome <- renderPlot({
+      min_year = input$yea[1]
+      max_year = input$yea[2]
+      
+      adjustable_cpi_income <- cpi_income |>
+        filter(year >= min_year, year <= max_year)
+      
+      adjustable_cpi_income <- adjustable_cpi_income |>
+        mutate(cum_yearly_change_c = cumsum(yearly_change_c))
+      
+      adjustable_cpi_income |>
+        ggplot(aes(x = year, y = cum_yearly_change_c)) +
+        geom_line()
+      
+    })
 
 }

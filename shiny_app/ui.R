@@ -12,9 +12,15 @@
 dashboardPage(
 
     # Application title
-    dashboardHeader(title = "CPI by Region"),
-    dashboardSidebar(),
+    dashboardHeader(disable = TRUE),
+    dashboardSidebar(
+      sidebarMenu(
+        id = "pages",
+        menuItem("Dashboard",tabName = "dashboard")
+      )
+    ),
     dashboardBody(
+      
       fluidRow(
         box(plotOutput("distPlot", height = 500, width = 500)),
         box(
@@ -30,9 +36,16 @@ dashboardPage(
           title = "Controls",
           sliderInput("year",
                       "Year Range:",
-                      min = 1947,
+                      min = 1967,
                       max = 2022,
                       value = c(1980,2000)))),
-      
-          
+      fluidRow(
+        box(plotOutput("adjustableincome", height = 500, width = 500)),
+        box(
+          title = "Controls",
+          sliderInput("yea",
+                      "Year Range:",
+                      min = 1968,
+                      max = 2022,
+                      value = c(1980, 2000))))
         ))
