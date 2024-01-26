@@ -49,5 +49,15 @@ server <- function(input, output, session) {
         geom_line()
       
     })
+    output$totalcpi <- renderPlot({
+      min_year = input$ye[1]
+      max_year = input$ye[2]
+      
+      cpi_total |>
+        ggplot(aes(x = year, y = CPI)) +
+        geom_line()
+    
+      })
+    
 
 }
