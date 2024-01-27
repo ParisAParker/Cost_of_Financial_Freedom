@@ -109,4 +109,9 @@ adjustable_cpi_income |>
   ggplot(aes(x = year, y = cum_yearly_change_c)) +
   geom_line()
 ```
+```{r}
+cpi_income |>
+  filter(year == 1980)
+
+```
 
