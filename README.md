@@ -11,3 +11,5 @@ There are many people who say living is unafforable for the new generation, but 
 - Is the value of our money always decreasing. If so, at what rate?
 
 ### Data Sources
+- [U.S. Bureau Labor of Statistics](https://www.bls.gov/developers/home.htm)
+- [U.S Census Bureau](https://www.census.gov/library/publications/2023/demo/p60-279.html#:~:text=Real%20median%20household%20income%20was,and%20Table%20A%2D1)
