@@ -3,12 +3,14 @@ title: "R Notebook"
 output: html_notebook
 ---
 
-
+# Import necessary libraries
 ```{r}
 library(tidyverse)
 library(lubridate)
 library(dplyr)
 ```
+
+# Read necessary csvs
 ```{r}
 cpi_by_region <- read_csv("../data/cpi_by_region.csv")
 family_income <- read_csv("../data/income_updated.csv")
@@ -17,21 +19,13 @@ cpi_total <- read_csv("../data/all_cpi_updated.csv")
 cpi_income <- read_csv("../data/cpi_income.csv")
 ```
 
-```{r}
-cpi_by_region
-```
-
-
-
-
-
-
+# Format date 
 ```{r}
 cpi_by_region <- cpi_by_region |>
   mutate(date = mdy(paste(Month, "01", Period)))
 ```
 
-
+# Filter cpi data by year
 ```{r}
 min_year = 1990
 max_year = 2000
@@ -39,7 +33,9 @@ max_year = 2000
 cpi_by_region |>
   filter(Period >= min_year, Period <= max_year)
 ```
+# I will use min_year and max_year as user inputs for the shiny dashboard
 
+# Visualize filtered cpi by region data as line chart
 ```{r}
 min_year = 1980
 max_year = 2005
@@ -51,50 +47,51 @@ cpi_by_region |>
   scale_color_manual(values = c('Red','Dark Green', 'Purple', 'Black', 'Blue')) +
   scale_linetype_manual(values = c("solid","solid", "solid", "dashed","solid"))
 ```
-```{r}
-family_income
-```
 
+# Visualize filtered income data as line chart
 ```{r}
 min_year = 1960
 max_year = 2000
 accurate_income |>
-  filter(year >= min_year, year <= max_year) #|>
-  #ggplot(aes(x = year, y= median_income))+
-   #   geom_line()
+  filter(year >= min_year, year <= max_year) |>
+  ggplot(aes(x = year, y= median_income))+
+    geom_line()
        
 ```
 
-```{r}
-cpi_by_region |>
-  group_by(Region)
-```
+# Visualize historical CPI for all years as line chart
 ```{r}
 cpi_total |>
   ggplot(aes(x = year, y = CPI)) +
   geom_line()
 ```
+# Visualize the year over year percent change for CPI as line chart
 ```{r}
 cpi_income |>
   ggplot(aes(x= year, y = yearly_change_c)) +
   geom_line()
 ```
+# Visualize the year over year percent change for income as a line chart
 ```{r}
 cpi_income |>
   ggplot(aes(x= year, y = yearly_change_i)) +
   geom_line()
 ```
 
+# Visualize how the value of our money has changed over time
 ```{r}
 cpi_income |>
-  ggplot(aes(x= year, y = cum_income_change)) +
+  ggplot(aes(x = year, y = cum_income_change)) +
   geom_line()
 ```
+
+# Visualize the percentage change of CPI
 ```{r}
 cpi_income |>
   ggplot(aes(x= year, y = cum_cpi_change)) +
   geom_line()
 ```
+# Visualize cumulative change of CPI with filter parameters
 ```{r}
 min_year = 2000
 max_year = 2020
@@ -108,10 +105,5 @@ adjustable_cpi_income <- adjustable_cpi_income |>
 adjustable_cpi_income |>
   ggplot(aes(x = year, y = cum_yearly_change_c)) +
   geom_line()
-```
-```{r}
-cpi_income |>
-  filter(year == 1980)
-
 ```
 
