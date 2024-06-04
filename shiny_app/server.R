@@ -95,5 +95,21 @@ server <- function(input, output, session) {
       
     })
     
+    # Plot real income growth %
+    output$realgrowth <- renderPlot({
+      
+      min_year = input$growth[1]
+      max_year = input$growth[2]
+      
+      real_income_growth <- cpi_income |>
+        filter(year >= min_year, year <= max_year)
+      
+      real_income_growth |>
+        ggplot(aes(x = year, y = cum_income_change)) +
+        geom_line() +
+        labs(x = 'Year', y = 'Real Income Growth(%)') 
+      
+    })
+  
 
 }
