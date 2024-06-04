@@ -11,6 +11,7 @@
 # Define server logic required to draw a histogram
 server <- function(input, output, session) {
 
+# Plot that shows the CPI by region as a line chart
     output$distPlot <- renderPlot({
 
       min_year = input$years[1]
@@ -18,11 +19,18 @@ server <- function(input, output, session) {
       
       cpi_by_region |>
         filter(Period >= min_year, Period <= max_year) |>
-        ggplot(aes(x = date, y = CPI, group = Region, color = Region,linetype = Region)) +
+        ggplot(aes(x = date, y = CPI,
+                   group = Region,
+                   color = Region,
+                   linetype = Region)) +
         geom_line() +
+        labs(x = 'Year',
+             y = 'Consumer Price Index') +
         scale_color_manual(values = c('Red','Dark Green', 'Purple', 'Black', 'Blue')) +
         scale_linetype_manual(values = c("solid","solid", "solid", "dashed","solid"))
     })
+
+    # Plot that shows median income as line chart going back 1967
     output$income <- renderPlot({
       min_year = input$year[1]
       max_year = input$year[2]
@@ -30,11 +38,14 @@ server <- function(input, output, session) {
       accurate_income |>
         filter(year >= min_year, year <= max_year) |>
         ggplot(aes(x = year, y= median_income))+
-        geom_line()
+        geom_line() +
+        labs(x = 'Year',
+             y = 'Median Income')
       
     })
     
-    output$adjustableincome <- renderPlot({
+    # Plot that shows Inflation Rate 
+    output$inflationrate <- renderPlot({
       min_year = input$yea[1]
       max_year = input$yea[2]
       
@@ -46,16 +57,23 @@ server <- function(input, output, session) {
       
       adjustable_cpi_income |>
         ggplot(aes(x = year, y = cum_yearly_change_c)) +
-        geom_line()
+        geom_line() +
+        labs(x = 'Year',
+             y = 'Inflation Rate')
       
     })
+
+    # Plot that shows the Consumer price Index since 1913
     output$totalcpi <- renderPlot({
       min_year = input$ye[1]
       max_year = input$ye[2]
       
       cpi_total |>
+        filter(year >= min_year, year <= max_year) |>
         ggplot(aes(x = year, y = CPI)) +
-        geom_line()
+        geom_line() +
+        labs(x = 'Year',
+             y = 'Consumer Price Index')
     
       })
     
