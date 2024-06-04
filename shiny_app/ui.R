@@ -19,7 +19,8 @@ dashboardPage(
         menuItem("Consumer Price Index", tabName = "totalCPI"),
         menuItem("Consumer Price Index by Region",tabName = "regionCPI"),
         menuItem("Median Income", tabName = "income"),
-        menuItem("Inflation Rate", tabName = "inflation")
+        menuItem("Inflation Rate", tabName = "inflation"),
+        menuItem("Percent Change in Median Income", tabName = "incomeChange")
       )
     ),
     dashboardBody(
@@ -29,14 +30,14 @@ dashboardPage(
                 titlePanel("Consumer Price Index Over Time"),
                 fluidRow(
                   box(plotOutput("totalcpi", height = 500, width = 600)),
-                  box(title = "Controls", sliderInput("ye","Year Range:",min = 1913,max = 2023,value = c(1913,2022)))
+                  box(title = "Controls", sliderInput("ye","Year Range:",min = 1913,max = 2023,value = c(1913,2023)))
                   )),
         # Page tab dealing with the Consumer Price Index by region
         tabItem("regionCPI",
                 titlePanel("Consumer Price Index Over Time (Regional Level)"),
                 fluidRow(
                   box(plotOutput("distPlot", height = 500, width = 600)),
-                  box(title = "Controls", sliderInput("years","Year Range:",min = 1974,max = 2023,value = c(1974,2022)))
+                  box(title = "Controls", sliderInput("years","Year Range:",min = 1974,max = 2023,value = c(1974,2023)))
                         )
                 ),
         # Page tab dealing with median income
@@ -54,7 +55,15 @@ dashboardPage(
                   box(plotOutput("inflationrate", height = 500, width = 600)),
                   box(title = "Controls", sliderInput("yea","Year Range:", min = 1968, max = 2022, value = c(1968, 2022)))
                         )
-                )
-              )
-                )
+                ),
+        # Page tab dealing with Percent Change of Median Income 
+        tabItem("incomeChange",
+              titlePanel("Percent Change in Median Income"),
+              fluidRow(
+                box(plotOutput("pctincome", height = 500, width = 600)),
+                box(title = "Controls", sliderInput("y","Year Range:", min = 1968, max = 2022, value = c(1968, 2022)))
+            )
+    )
+)
+)
 )

@@ -77,5 +77,23 @@ server <- function(input, output, session) {
     
       })
     
+    # Plot percent change in median income
+    output$pctincome <- renderPlot({
+      min_year = input$y[1]
+      max_year = input$y[2]
+      
+      cumulative_income <- cpi_income |>
+        filter(year >= min_year, year <= max_year)
+      
+      cumulative_income <- cumulative_income |>
+        mutate(cum_yearly_change_i = cumsum(yearly_change_i))
+      
+      cumulative_income |>
+        ggplot(aes(x = year, y = cum_yearly_change_i)) +
+        geom_line() +
+        labs(x = 'Year', y = '% Change in Median Income')
+      
+    })
+    
 
 }
