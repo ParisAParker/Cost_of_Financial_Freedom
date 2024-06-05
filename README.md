@@ -1,10 +1,11 @@
-# Click The Logo To Go Directly To The Dashboard
+# Click The Logo or Link To Go Directly To The Dashboard
 <a href = "https://paris-a-parker.shinyapps.io/Purchasing_Power_Dashboard">
   <img src = "https://www.rstudio.com/wp-content/uploads/2014/04/shiny.png" alt = "Shiny Logo" width = "200"/>
 </a>
 
 [View Dashboard](https://paris-a-parker.shinyapps.io/Purchasing_Power_Dashboard)
 
+# Purchasing Power: Income vs CPI
 Most people want the freedom to shop, travel, and do the things they love, but don't have the money to do it. A major obstacle stopping people from achieving this freedom is the cost of living. By analyzing the cost of living and income changes, we can understand how the value of our money has changed.
 
 ### Motivation
