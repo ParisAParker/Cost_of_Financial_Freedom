@@ -1,4 +1,4 @@
-# Purchasing Power: Income vs CPI
+# Click The Logo To Go Directly To The Dashboard
 <a href = "https://paris-a-parker.shinyapps.io/Purchasing_Power_Dashboard">
   <img src = "https://www.rstudio.com/wp-content/uploads/2014/04/shiny.png" alt = "Shiny Logo" width = "200"/>
 </a>
